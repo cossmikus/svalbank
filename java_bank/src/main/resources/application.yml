@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/bank
+    username: bank
+    password: bank
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  liquidbase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  data:
+    redis:
+      host: localhost
+      port: 6380
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: bank-service
+      auto-offset-reset: earliest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers
